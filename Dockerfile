@@ -29,5 +29,8 @@ RUN git clone https://github.com/raspberrypi/pico-sdk /home/sdk/pico-sdk && \
 ENV PICO_SDK_PATH=/home/sdk/pico-sdk
 
 RUN mkdir RP2040_Project
+RUN cd /home/dev/RP2040_Project && \
+    mkdir build && \
+    cd /home/dev
 
 COPY . /home/dev/RP2040_Project
