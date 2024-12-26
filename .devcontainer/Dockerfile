@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -27,10 +27,3 @@ RUN git clone https://github.com/raspberrypi/pico-sdk /home/sdk/pico-sdk && \
      cd /home/dev
 
 ENV PICO_SDK_PATH=/home/sdk/pico-sdk
-
-RUN mkdir RP2040_Project
-RUN cd /home/dev/RP2040_Project && \
-    mkdir build && \
-    cd /home/dev
-
-COPY . /home/dev/RP2040_Project

@@ -2,106 +2,29 @@
 
 The purpose of this project is to simplify the setup and working with the RPi Pico or RP2040. The project contains a basic template, including a CMake file, to help set up both the environment and project. This repository will include a walkthrough of the project.
 
-## Step 1 - Build the Project
+## Setup:
 
-The Docker image already contains all the necessary commands and files to set up and build the project. To build the Docker image, you can use the following command:
+To use this template, the following are required:
 
-```
-make docker-build
-```
+1. Install Docker
+2. nstall Visual Studio Code (VS Code) and the Dev Container Extension
 
-Or you can manually build it with:
+## Accessing Dev Container
 
-```
-docker build -t <image_name>:<version_number> .
-```
+To use Dev Container:
 
-**Note:** The default name when using `make docker-build` is `rp2040/template:1.0`.
+1. Open VS Code and navigate to current repo directory.
+2. Open VS Code Shell Command and select "Open Folder in Container"
 
-## Step 2 - Run the Docker Image
+**Note**: To open VS Code Shell Command you use `control+shift+p` on Windows and `cmd+shift+p` on Mac OS.
 
-To run the Docker image, use the following make command:
 
-```
-make docker-run
-```
+## Building the project
 
-Or run it manually with:
+To build the project:
+1. `mkdir build`
+2. `cd build`
+3. `cmake ..`
+4. `make`
 
-```
-docker run -i -t <image_name>:<version_number> /bin/bash
-```
-
-**Note:** If you choose a different name from the default, please edit the Makefile to reflect the name you have chosen before running `make docker-run`. For subsequent runs, you can start the Docker container using:
-
-```
-docker start <container_id>
-```
-
-Or if you have already replaced the `container_id` in the Makefile:
-
-```
-make docker-start
-```
-
-## Step 3 - Build and Extract Your UF2 File
-
-We can build the project by navigating into the `RP2040_Project/build` directory with the following command:
-
-```
-cd RP2040_Project/build
-```
-
-Prepare CMake with:
-
-```
-cmake ..
-```
-
-It may take some time for the project to build for the first time. You can then generate the UF2 file with:
-
-```
-make
-```
-
-If everything goes as planned, the project is now built. You can now extract the UF2 file into your current host directory with the following command:
-
-```
-docker cp <container_id>:/home/dev/RP2040_Project/build/Template_Project.uf2 .
-```
-
-Alternatively, you can replace the `container_id` in the Makefile with your container ID and issue the following command:
-
-```
-make docker-getuf2
-```
-
-## Step 4 - Access the Docker Container
-
-To access a running Docker container via shell, you can issue:
-
-```
-docker exec -it <container_id> bash
-```
-
-Or, if you have replaced the `container_id` in the Makefile with your container ID, you can issue:
-
-```
-make docker-open
-```
-
-## Step 5 - Exit
-
-You can exit and stop your Docker container by issuing the following two commands:
-
-```
-exit
-docker stop <container_id>
-```
-
-Or if you have replaced `container_id` with your container ID in the Makefile:
-
-```
-exit
-make docker-stop
-```
+If you be able to build a sucessful project.
